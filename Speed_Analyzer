@@ -1,0 +1,94 @@
+import time
+import random
+
+
+sentences = [
+      "Mechanical engineers design systems that power the modern world",
+    "Automation and robotics are transforming industrial processes",
+    "Python is widely used for data science and machine learning",
+    "Precision and accuracy are critical in engineering design",
+    "Smart irrigation systems help conserve water efficiently",
+    "Control systems play a vital role in automation engineering",
+    "Innovation drives progress in technology and engineering",
+    "Thermodynamics deals with heat and energy transfer",
+    "Fluid mechanics is essential for understanding flow behavior",
+    "Engineers solve real world problems using analytical skills",
+    "Computer aided design improves productivity and accuracy",
+    "Artificial intelligence is shaping the future of industries",
+    "Sensors are key components in modern smart systems",
+    "Manufacturing processes require careful planning and execution",
+    "Renewable energy sources are crucial for sustainability",
+    "Robotics combines mechanics electronics and programming",
+    "Data analysis helps in making informed engineering decisions",
+    "Programming skills are valuable for modern engineers",
+    "Design optimization improves efficiency and reduces cost",
+    "Electrical systems are fundamental in automation projects",
+    "Signal processing is used in communication systems",
+    "Machine learning enables systems to learn from data",
+    "Industrial automation increases production efficiency",
+    "Engineering requires creativity and problem solving skills",
+    "Simulation tools help predict system performance",
+    "Embedded systems are used in everyday electronic devices",
+    "Quality control ensures reliability of products",
+    "Digital transformation is changing traditional industries",
+    "Mechatronics integrates mechanical and electronic systems",
+    "Engineering innovation leads to technological advancement",
+    
+]
+
+def calculate_accuracy(original, typed):
+    correct = 0
+    length = max(len(original), len(typed))
+
+    for i in range(min(len(original), len(typed))):
+        if original[i] == typed[i]:
+            correct += 1
+
+    return (correct / length) * 100
+
+
+def typing_test():
+    sentence = random.choice(sentences)
+
+    print("\n--- Typing Speed Test ---")
+    print("\nType the following sentence:\n")
+    print(f'"{sentence}"')
+
+    input("\nPress Enter when you're ready...")
+
+    start = time.time()
+    typed = input("\nStart typing:\n")
+    end = time.time()
+
+    time_taken = end - start
+
+    
+    words = len(typed.split())
+    wpm = (words / time_taken) * 60
+
+    
+    accuracy = calculate_accuracy(sentence, typed)
+
+    
+    print("\n--- Results ---")
+    print(f"Time Taken : {time_taken:.2f} seconds")
+    print(f"Speed      : {wpm:.2f} WPM")
+    print(f"Accuracy   : {accuracy:.2f}%")
+
+    
+    if wpm > 60 and accuracy > 90:
+        print("🔥 Excellent typing!")
+    elif wpm > 40:
+        print("👍 Good job!")
+    else:
+        print("💡 Keep practicing!")
+
+
+
+while True:
+    typing_test()
+
+    choice = input("\nTry again? (y/n): ").lower()
+    if choice != 'y':
+        print("Goodbye 👋")
+        break
